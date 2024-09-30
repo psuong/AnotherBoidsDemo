@@ -1,0 +1,8 @@
+{
+  "version": "0",
+  "dependencies": [
+    "fmt",
+    "glm",
+    "catch2"
+  ]
+}
