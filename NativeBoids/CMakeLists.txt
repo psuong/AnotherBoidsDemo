@@ -15,15 +15,23 @@ find_package(Catch2 REQUIRED)
 add_compile_definitions(DEBUG_EXPORTS)
 add_compile_definitions(BOID_EXPORTS)
 
+set(SOURCE_DIR "src")
+set(HEADERS_DIR "headers")
+
+file(GLOB SOURCES "${SOURCE_DIR}/*.cpp")
+file(GLOB HEADERS "${HEADERS_DIR}/*.h")
+
 # Add source to this project's library.
-add_library(NativeBoids SHARED 
-    "headers/native_boids.h"
-    "headers/simple_logger.h"
-    "headers/entity.h"
-    "headers/fixed_buffer.h"
-    "src/native_boids.cpp"
-    "src/simple_logger.cpp"
-    "src/fixed_buffer.cpp")
+# add_library(NativeBoids SHARED 
+#     "headers/native_boids.h"
+#     "headers/simple_logger.h"
+#     "headers/entity.h"
+#     "headers/fixed_buffer.h"
+#     "src/native_boids.cpp"
+#     "src/simple_logger.cpp"
+#     "src/fixed_buffer.cpp")
+
+add_library(NativeBoids SHARED ${SOURCES} ${HEADERS})
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
     set_property(TARGET NativeBoids PROPERTY CXX_STANDARD 17)
