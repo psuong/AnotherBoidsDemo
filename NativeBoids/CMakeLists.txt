@@ -10,20 +10,23 @@ project (NativeBoids)
 
 find_package(fmt CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
+find_package(Catch2 REQUIRED)
 
 add_compile_definitions(DEBUG_EXPORTS)
 add_compile_definitions(BOID_EXPORTS)
 
 # Add source to this project's library.
-add_library(NativeBoids SHARED "headers/native_boids.h" "src/native_boids.cpp" "headers/simple_logger.h" "src/simple_logger.cpp" "headers/entity.h" "headers/fixed_buffer.h" "src/fixed_buffer.cpp" "tests/main.cpp")
+add_library(NativeBoids SHARED 
+    "headers/native_boids.h"
+    "headers/simple_logger.h"
+    "headers/entity.h"
+    "headers/fixed_buffer.h"
+    "src/native_boids.cpp"
+    "src/simple_logger.cpp"
+    "src/fixed_buffer.cpp")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
     set_property(TARGET NativeBoids PROPERTY CXX_STANDARD 17)
-endif()
-
-if (BUILD_TESTS)
-    find_package(Catch2 REQUIRED)
-    target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 endif()
 
 enable_testing()
@@ -32,5 +35,6 @@ add_executable(tests "tests/main.cpp")
 # TODO: Add tests and install targets if needed.
 target_link_libraries(NativeBoids PRIVATE fmt::fmt)
 target_link_libraries(NativeBoids PRIVATE glm::glm)
+target_link_libraries(tests PRIVATE Catch2::Catch2WithMain)
 
 add_test(NAME MyTests COMMAND tests)
