@@ -1,5 +1,5 @@
-#ifndef ENTITY_BUFFER_H
-#define ENTITY_BUFFER
+#ifndef FIXED_BUFFER_H
+#define FIXED_BUFFER_H
 
 #include <cstdint>
 #include <vector>
