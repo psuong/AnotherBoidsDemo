@@ -3,3 +3,7 @@ Logs
 NativeBoids/out
 NativeBoids/.vs
 UserSettings
+NativeBoids/vcpkg_installed
+NativeBoids/Testing
+NativeBoids/CMakeFiles
+NativeBoids/build
