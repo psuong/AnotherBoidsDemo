@@ -5,16 +5,17 @@
 
 using namespace std;
 
-namespace Game {
+namespace Game
+{
     Logger& Logger::Instance()
     {
-        static Logger instance = Logger("boids.log");
+        static Logger& instance = Logger("boids.log");
         return instance;
     }
 
     Logger::Logger(const string& f)
     {
-        this->logFile.open(f, ios::app);
+        this->logFile.open(f, ios::trunc);
     }
 
     Logger::~Logger()

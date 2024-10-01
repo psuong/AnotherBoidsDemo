@@ -5,16 +5,18 @@
 #include <fstream>
 using namespace std;
 
-namespace Game {
-
-    enum LogLevel {
+namespace Game
+{
+    enum LogLevel
+    {
         DEBUG,
         INFO,
         WARN,
         ERROR
     };
 
-    class Logger {
+    class Logger
+    {
     public:
         static Logger& Instance();
         Logger(const string& filename);
