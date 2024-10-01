@@ -17,6 +17,8 @@ namespace Game
     struct FixedBuffer
     {
     public:
+        FixedBuffer() : FixedBuffer(1) { }
+
         FixedBuffer(uint32_t capacity)
         {
             this->capacity = capacity;
@@ -32,7 +34,11 @@ namespace Game
 
         ~FixedBuffer()
         {
-            free(this->head);
+            if (this->head != nullptr)
+            {
+                Logger::Instance().Log(LogLevel::DEBUG, "Releasing FixedBuffer");
+                free(this->head);
+            }
         }
 
         void Flush()

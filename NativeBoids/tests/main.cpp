@@ -4,6 +4,7 @@
 #include <cstdint>
 #include "../headers/simple_logger.h"
 #include "../headers/fixed_buffer.h"
+#include "../headers/native_boids.h"
 
 using namespace Game;
 using namespace std;
@@ -33,7 +34,7 @@ TEST_CASE("Logger Tests", "[loggers]")
     for (int i = 0; i < 4; i++)
     {
         LogLevel level = (LogLevel)i;
-        logger.Log(level, fmt::format("%d", i));
+        logger.Log(level, fmt::format("{}", i));
     }
     REQUIRE(CountLines(boidsLog) == 5);
 }
@@ -87,4 +88,11 @@ TEST_CASE("Fixed Buffer Tests", "[fixed-buffers]")
     }
 
     REQUIRE(0 == buffer.Push(A()));
+}
+
+TEST_CASE("Boid Manager Tests", "[boid-managers]")
+{
+    BoidsManager manager = BoidsManager(32);
+    uint32_t handle = manager.RequestEntity(vec3(), vec3());
+    REQUIRE(handle == 1);
 }
